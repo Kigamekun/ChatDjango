@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+
+{% block message %}
+
+
+
+    {% for message in messages %}
+    {% if message.sender == request.user %}
+
+
+<li  style="margin-bottom: 10px;margin-top: 10px;" class="left float-left clearfix">
+    <div class="avtar-pic w35 bg-pink"><span>You</span></div> 
+    <div style="border: 2px solid  cyan;" class="chat-info">  
+        <span class="message">
+
+            {{message}}
+        </span>
+    </div>
+  
+</li>
+
+
+
+    {% else %}
+
+    
+    <li class="right" style=" margin-bottom: 10px;margin-top: 10px;">
+       <img style="border: 2px solid salmon;" src="https://accounts.ignitegki.com/storage/image/profile/85-1558177107.png" class="rounded" alt="Anonim">
+        <div style="border: 2px solid salmon;" class="chat-info">
+            <span class="message">
+                {{message}}
+
+            </span>
+        </div>
+     
+    </li>
+    {% endif %}
+  
+    {% endfor %}
+
+
+
+
+<script>
+$(function () {
+    $('#user{{ receiver.id }}').addClass('active');
+    //Call receive function each 1 seconds to check for new messages in the database
+   
+    setInterval(receive,1000)
+})
+</script>
+{% endblock %}
+
